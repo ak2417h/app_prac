@@ -116,7 +116,7 @@ class _homepageState extends State<homepage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                       onPressed: () {
-                        // final cr = FirebaseFirestore.instance.collection("user").doc().update({"first name": "fn","last name":"ln"});
+                        final cr = FirebaseFirestore.instance.collection("user").doc("rodiUwBV2HYU1aBVlYUR").update({"first name": fn,"last name": ln});
                         /*
                         cr.snapshots().listen((snapshot) {
                           List documents;
