@@ -1,0 +1,11 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/Users/andrew/.pub-cache/hosted/pub.dev/cloud_firestore-4.4.2/
+cloud_firestore_web=/Users/andrew/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.3.2/
+firebase_auth=/Users/andrew/.pub-cache/hosted/pub.dev/firebase_auth-4.2.3/
+firebase_auth_web=/Users/andrew/.pub-cache/hosted/pub.dev/firebase_auth_web-5.2.3/
+firebase_core=/Users/andrew/.pub-cache/hosted/pub.dev/firebase_core-2.6.1/
+firebase_core_web=/Users/andrew/.pub-cache/hosted/pub.dev/firebase_core_web-2.2.1/
+google_sign_in=/Users/andrew/.pub-cache/hosted/pub.dev/google_sign_in-5.4.2/
+google_sign_in_android=/Users/andrew/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.4/
+google_sign_in_ios=/Users/andrew/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.5.1/
+google_sign_in_web=/Users/andrew/.pub-cache/hosted/pub.dev/google_sign_in_web-0.10.2/
