@@ -24,7 +24,7 @@ class _homepageState extends State<homepage> {
   String ln = "";
   int ci = 0;
 
-  CollectionReference cr = FirebaseFirestore.instance.collection("user");
+  // CollectionReference cr = FirebaseFirestore.instance.collection("user");
 
   static Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
@@ -100,7 +100,11 @@ class _homepageState extends State<homepage> {
                           "first name": fn,
                           "last name": ln
                         };
-                        cr.add(data);
+                        // cr.add(data);
+                        final cr = FirebaseFirestore.instance
+                            .collection("user")
+                            .doc(FirebaseAuth.instance.currentUser?.uid)
+                            .set(data);
                       },
                       child: Text(
                         "Submit",
@@ -116,7 +120,10 @@ class _homepageState extends State<homepage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                       onPressed: () {
-                        final cr = FirebaseFirestore.instance.collection("user").doc("rodiUwBV2HYU1aBVlYUR").update({"first name": fn,"last name": ln});
+                        final cr = FirebaseFirestore.instance
+                            .collection("user")
+                            .doc(FirebaseAuth.instance.currentUser?.uid)
+                            .update({"first name": fn, "last name": ln});
                         /*
                         cr.snapshots().listen((snapshot) {
                           List documents;
@@ -126,7 +133,6 @@ class _homepageState extends State<homepage> {
                           });
                         });
                         */
-
                       },
                       child: Text(
                         "Update",
