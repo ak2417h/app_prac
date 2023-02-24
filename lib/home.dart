@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 // import 'dart:html';
 
@@ -22,6 +23,7 @@ class _homepageState extends State<homepage> {
   @override
   String fn = "";
   String ln = "";
+  String name = "";
   int ci = 0;
 
   // CollectionReference cr = FirebaseFirestore.instance.collection("user");
@@ -107,7 +109,7 @@ class _homepageState extends State<homepage> {
                             .set(data);
                       },
                       child: Text(
-                        "Submit",
+                        "Create",
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
@@ -140,6 +142,55 @@ class _homepageState extends State<homepage> {
                       ),
                     ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blue[400],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () {
+                        final cr = FirebaseFirestore.instance
+                            .collection("user")
+                            .doc(FirebaseAuth.instance.currentUser?.uid)
+                            .delete();
+                      },
+                      child: Text(
+                        "Delete",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blue[400],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () async {
+                        final cr =
+                            FirebaseFirestore.instance.collection("user");
+                        // .doc(FirebaseAuth.instance.currentUser?.uid);
+                        // await cr.get().then((DocumentSnapshot snapshot) async {
+                        //   setState(() {
+                        //     name = snapshot.data;
+                        //   });
+                        // });
+                        await cr.get().then((event) {
+                          setState(() {
+                          for (var doc in event.docs) {
+                            name = name + doc.data().values.toList()[1] + " " + doc.data().values.toList()[0];
+                          } 
+                          });
+                        });
+                      },
+                      child: Text(
+                        "Read",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -149,9 +200,14 @@ class _homepageState extends State<homepage> {
                 SizedBox(
                   height: 35,
                 ),
-                Text(
-                  fn + " " + ln,
-                  style: TextStyle(fontSize: 50),
+                Container(
+                  // decoration: BoxDecoration(
+                  //   border: Border.all(color: Colors.black)
+                  // ),
+                  child: Text(
+                    name,
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ],
             ),
