@@ -180,7 +180,8 @@ class _homepageState extends State<homepage> {
                         await cr.get().then((event) {
                           setState(() {
                           for (var doc in event.docs) {
-                            name = name + doc.data().values.toList()[1] + " " + doc.data().values.toList()[0];
+                            // name = name + doc.data().values.toList()[1] + " " + doc.data().values.toList()[0];
+                            name = doc.data()["first name"] + " " + doc.data()["last name"];
                           } 
                           });
                         });
