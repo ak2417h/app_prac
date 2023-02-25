@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 // import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -171,19 +172,20 @@ class _homepageState extends State<homepage> {
                       onPressed: () async {
                         final cr =
                             FirebaseFirestore.instance.collection("user");
-                        // .doc(FirebaseAuth.instance.currentUser?.uid);
-                        // await cr.get().then((DocumentSnapshot snapshot) async {
-                        //   setState(() {
-                        //     name = snapshot.data;
-                        //   });
-                        // });
-                        await cr.get().then((event) {
-                          setState(() {
-                          for (var doc in event.docs) {
-                            // name = name + doc.data().values.toList()[1] + " " + doc.data().values.toList()[0];
-                            name = doc.data()["first name"] + " " + doc.data()["last name"];
-                          } 
-                          });
+                        await cr
+                            .doc(FirebaseAuth.instance.currentUser?.uid)
+                            .get()
+                            .then((snap) {
+                          if (snap.exists) {
+                            setState(() {
+                              name = snap.data()!["first name"] +
+                                  " " +
+                                  snap.data()!["last name"];
+                            });
+                          }
+                          else{
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error")));
+                          }
                         });
                       },
                       child: Text(
